@@ -1,11 +1,7 @@
 from importlib import resources
 from flask import Flask
 from flask_restful import Api
-try:
-    from flask_jwt import JWT
-except ImprotError:
-    from collections.abc import Mapping
-    from flask_jwt import JWT
+#from flask_jwt import JWT
 
 
 from db import db 
@@ -25,7 +21,7 @@ app.secret_key = 'jose'
 api = Api(app)
 
 
-jwt = JWT(app, authenticate, identity)
+#jwt = JWT(app, authenticate, identity)
 #when JWT is initialised it will use app, authenticate, identity for autheticating
 #JWT creates an new endpoint i.e /auth
 #when /auth is called we send username,id,password to auticate function
