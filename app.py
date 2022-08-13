@@ -1,3 +1,5 @@
+import os
+
 from importlib import resources
 from flask import Flask
 from flask_restful import Api
@@ -15,7 +17,8 @@ warnings.filterwarnings('ignore')
 
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///data.db")
+#the get methon taking two values if "DATABASE_URL" is not found in environment variables it considers sqlite database
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
 api = Api(app)
